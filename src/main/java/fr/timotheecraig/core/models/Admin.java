@@ -1,8 +1,12 @@
 package fr.timotheecraig.core.models;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="admin")
 public class Admin {
 
     private String username;

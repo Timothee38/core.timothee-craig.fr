@@ -1,11 +1,10 @@
 package fr.timotheecraig.core.models;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name="logs")
 public class Logs {
 
     private long id;

@@ -1,14 +1,20 @@
 package fr.timotheecraig.core.models;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+@Entity
+@Table(name="images")
 public class Images {
 
     private int id;
     private String path;
+
+    public Images() {
+    }
+
+    public Images(String path) {
+        this.path = path;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
