@@ -21,5 +21,6 @@ public interface ProjectsService {
     @Transactional(readOnly = false)
     public Projects updateProject(Projects projects, Projects projectsDetail);
 
+    @Transactional(readOnly = false)
     public void deleteProject(Projects projects);
 }
