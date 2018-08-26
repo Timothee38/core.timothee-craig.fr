@@ -19,7 +19,6 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 @RestController
-@RequestMapping("/api")
 public class ImagesController {
 
     @Autowired
@@ -32,8 +31,8 @@ public class ImagesController {
     @GetMapping("/images")
     public Images getRandomImage() {
         List<Images> images = imagesService.getImages();
-        int index = ThreadLocalRandom.current().nextInt(images.size());
-        return images.get(index);
+        int index = images != null? ThreadLocalRandom.current().nextInt(images.size()) : -1;
+        return index >= 0 ? images.get(index) : null;
     }
 
     @PostMapping("/images")

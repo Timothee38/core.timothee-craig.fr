@@ -8,4 +8,5 @@ import org.springframework.transaction.annotation.Transactional;
 public interface AdminService {
     @Transactional(readOnly = false)
     public Admin createAdmin(Admin admin);
+
 }

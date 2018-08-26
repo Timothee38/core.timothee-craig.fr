@@ -12,20 +12,15 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/api")
 public class AdminController {
 
     @Autowired
     AdminService adminService;
 
-    @PostMapping("/login")
-    public void login() {
-        // TODO: change return type and implement methods
-    }
-
     @PostMapping("/admin")
     public Admin createAdmin(@Valid @RequestBody Admin admin) {
         return adminService.createAdmin(admin);
     }
+
 
 }

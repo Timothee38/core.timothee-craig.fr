@@ -1,5 +1,6 @@
 package fr.timotheecraig.core.services.impl;
 
+import fr.timotheecraig.core.exceptions.RessourceNotFoundException;
 import fr.timotheecraig.core.models.Admin;
 import fr.timotheecraig.core.repositories.AdminRepository;
 import fr.timotheecraig.core.services.AdminService;
@@ -42,5 +43,6 @@ public class AdminServiceImpl implements AdminService {
         admin.setPassword(bCryptPasswordEncoder.encode(admin.getPassword()));
         return adminRepository.save(admin);
     }
+
 
 }
