@@ -1,10 +1,13 @@
 package fr.timotheecraig.core.controllers;
 
+import fr.timotheecraig.core.api.IpStackAPI;
 import fr.timotheecraig.core.models.Logs;
+import fr.timotheecraig.core.objects.LogCreation;
 import fr.timotheecraig.core.services.LogsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -20,7 +23,9 @@ public class LogsController {
     }
 
     @PostMapping("/logs")
-    public Logs addLogs(@Valid @RequestBody Logs logs) {
+    public Logs addLogs(HttpServletRequest request, @Valid @RequestBody LogCreation log) {
+        String country = IpStackAPI.getCountryFromIp(request.getRemoteAddr());
+        Logs logs = new Logs(log.getDate(), log.getLang(), request.getRemoteAddr(), country, log.getLink(), log.getLogType());
         return logsService.addLogs(logs);
     }
 
