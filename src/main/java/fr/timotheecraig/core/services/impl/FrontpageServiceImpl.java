@@ -11,7 +11,7 @@ import java.util.Optional;
 @Service
 public class FrontpageServiceImpl implements FrontpageService {
 
-    private final String FRONTPAGE_TITLE="Timothée Craig"; // This should never change.
+    private final String FRONTPAGE_TITLE="Timothee Craig"; // This should never change.
 
     private FrontpageRepository frontpageRepository;
 

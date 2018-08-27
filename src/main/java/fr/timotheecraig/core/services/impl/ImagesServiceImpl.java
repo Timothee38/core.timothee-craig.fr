@@ -39,7 +39,7 @@ public class ImagesServiceImpl implements ImagesService {
     /** Methods **/
 
     public List<Images> getImages() {
-        return null;
+        return (List<Images>) imagesRepository.findAll();
     }
 
     public Images addImages(Images images) {
