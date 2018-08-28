@@ -13,7 +13,7 @@ public class IpStackAPI {
     public static String getCountryFromIp(String ipAddress) {
         try {
             JSONObject jsonObject = JsonReader.readJsonFromUrl(BASE_URL + ipAddress + "?access_key=" + SecurityConstants.IP_STACK_API_KEY);
-            return jsonObject.getString("country_name");
+            return ((jsonObject.has("country_name") && !jsonObject.isNull("country_name"))) ? jsonObject.getString("country_name") : null;
         } catch (IOException e) {
             e.printStackTrace();
             return "";

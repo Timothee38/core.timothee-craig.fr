@@ -24,7 +24,10 @@ public class LogsController {
 
     @PostMapping("/logs")
     public Logs addLogs(HttpServletRequest request, @Valid @RequestBody LogCreation log) {
-        String country = IpStackAPI.getCountryFromIp(request.getRemoteAddr());
+        String country = "localhost";
+        if(!request.getRemoteAddr().equals("0:0:0:0:0:0:0:1") && !request.getRemoteAddr().equals("127.0.0.1")) {
+            country = IpStackAPI.getCountryFromIp(request.getRemoteAddr());
+        }
         Logs logs = new Logs(log.getDate(), log.getLang(), request.getRemoteAddr(), country, log.getLink(), log.getLogType());
         return logsService.addLogs(logs);
     }
