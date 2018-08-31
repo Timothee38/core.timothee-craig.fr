@@ -3,6 +3,7 @@ package fr.timotheecraig.core.controllers;
 import fr.timotheecraig.core.api.IpStackAPI;
 import fr.timotheecraig.core.models.Logs;
 import fr.timotheecraig.core.objects.LogCreation;
+import fr.timotheecraig.core.objects.LogsCountObject;
 import fr.timotheecraig.core.services.LogsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +19,8 @@ public class LogsController {
     LogsService logsService;
 
     @GetMapping("/logs/{logtype}")
-    public List<Logs> getLogsByType(@PathVariable(value = "logtype") int logtype) {
-        return logsService.getLastDayLogs(logtype);
+    public List<LogsCountObject> getLogsCountByType(@PathVariable(value = "logtype") int logtype) {
+        return logsService.getLogsCountByType(logtype);
     }
 
     @PostMapping("/logs")
@@ -31,5 +32,6 @@ public class LogsController {
         Logs logs = new Logs(log.getDate(), log.getLang(), request.getRemoteAddr(), country, log.getLink(), log.getLogType());
         return logsService.addLogs(logs);
     }
+
 
 }
