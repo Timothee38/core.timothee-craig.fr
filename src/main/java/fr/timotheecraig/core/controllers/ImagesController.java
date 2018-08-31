@@ -35,6 +35,11 @@ public class ImagesController {
         return index >= 0 ? images.get(index) : null;
     }
 
+    @GetMapping("/all-images")
+    public List<Images> getAllImages() {
+        return imagesService.getImages();
+    }
+
     @PostMapping("/images")
     public ResponseEntity<?> uploadImages(@RequestParam("file") MultipartFile file) {
         logger.debug("Uploading 1 single file: " + file.getName());
