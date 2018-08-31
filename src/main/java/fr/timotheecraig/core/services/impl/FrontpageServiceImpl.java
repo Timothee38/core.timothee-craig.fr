@@ -29,4 +29,14 @@ public class FrontpageServiceImpl implements FrontpageService {
     public Optional<Frontpage> getFrontpageData() {
         return frontpageRepository.findById(FRONTPAGE_TITLE);
     }
+
+    public Optional<Frontpage> getFrontpageDataByTitle(String bigTitle) {
+        return frontpageRepository.findById(bigTitle);
+    }
+
+    public Frontpage updateFrontPageData(Frontpage frontpage, Frontpage frontpageDetails) {
+        frontpage.setEnDesc(frontpageDetails.getEnDesc());
+        frontpage.setFrDesc(frontpageDetails.getFrDesc());
+        return frontpageRepository.save(frontpage);
+    }
 }

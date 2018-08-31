@@ -11,4 +11,8 @@ public interface FrontpageService {
 
     public Optional<Frontpage> getFrontpageData();
 
+    public Optional<Frontpage> getFrontpageDataByTitle(String bigTitle);
+
+    @Transactional(readOnly = false)
+    public Frontpage updateFrontPageData(Frontpage frontpage, Frontpage frontpageDetails);
 }
