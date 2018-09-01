@@ -25,7 +25,7 @@ public class ContactController {
     public Contact createProjects(@Valid @RequestBody Contact contact) { return  contactService.addContact(contact); }
 
     @PutMapping("/contact/{id}")
-    public Contact updateProjects(@PathVariable(value = "id") Integer id, @Valid @RequestBody Contact contactDetails) {
+    public Contact updateContact(@PathVariable(value = "id") Integer id, @Valid @RequestBody Contact contactDetails) {
         Contact contact = contactService.findContactById(id).orElseThrow(() -> new RessourceNotFoundException("Contacts", "id", id));
         return contactService.updateContact(contact, contactDetails);
     }
