@@ -76,4 +76,8 @@ public class ImagesServiceImpl implements ImagesService {
 
         }
     }
+
+    public Images saveImageToDb(Images images) {
+        return imagesRepository.save(images);
+    }
 }

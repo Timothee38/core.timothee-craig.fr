@@ -41,19 +41,19 @@ public class ImagesController {
     }
 
     @PostMapping("/images")
-    public ResponseEntity<?> uploadImages(@RequestParam("file") MultipartFile file) {
+    public Images uploadImages(@RequestParam("file") MultipartFile file) {
         logger.debug("Uploading 1 single file: " + file.getName());
         if(file.isEmpty()) {
-            return new ResponseEntity<>("Please select a file!", HttpStatus.OK);
+            return null;
         }
 
         try {
             imagesService.saveUploadedFiles(Arrays.asList(file), UPLOADED_FOLDER);
         } catch (IOException e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return null;
         }
         Images images = new Images(file.getOriginalFilename());
-        return new ResponseEntity("Successfully uploaded - " + file.getOriginalFilename(), new HttpHeaders(), HttpStatus.OK);
+        return imagesService.saveImageToDb(images);
     }
 
     @DeleteMapping("/images/{id}")

@@ -23,4 +23,8 @@ public interface ImagesService {
     public void deleteImages(Images images);
 
     public void saveUploadedFiles(List<MultipartFile> asList, String uploadedFolder) throws IOException;
+
+    @Transactional(readOnly = false)
+    public Images saveImageToDb(Images images);
+
 }
