@@ -12,10 +12,13 @@ public interface ContactService {
 
     public List<Contact> getContacts();
 
+    @Transactional(readOnly = false)
     public Contact addContact(Contact contact);
 
+    @Transactional(readOnly = false)
     public Contact updateContact(Contact contactToUpdate, Contact contactDetails);
 
+    @Transactional(readOnly = false)
     public void deleteContact(Contact contact);
 
     public Optional<Contact> findContactById(Integer id);
