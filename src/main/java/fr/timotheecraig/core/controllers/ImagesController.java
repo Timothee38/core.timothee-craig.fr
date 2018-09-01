@@ -26,7 +26,7 @@ public class ImagesController {
 
     private final Logger logger = LoggerFactory.getLogger(ImagesController.class);
 
-    private static String UPLOADED_FOLDER = "C://Temp//"; // TODO : Must change when I put this on my Linux VPS :)
+    public static String UPLOADED_FOLDER = "/Users/timotheecraig/Documents/development/timotheecraig.fr/timothee-craig.fr/public/img/"; // TODO : Must change when I put this on my Linux VPS :)
 
     @GetMapping("/images")
     public Images getRandomImage() {
@@ -52,7 +52,7 @@ public class ImagesController {
         } catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        Images images = new Images(UPLOADED_FOLDER + file.getOriginalFilename());
+        Images images = new Images(file.getOriginalFilename());
         return new ResponseEntity("Successfully uploaded - " + file.getOriginalFilename(), new HttpHeaders(), HttpStatus.OK);
     }
 

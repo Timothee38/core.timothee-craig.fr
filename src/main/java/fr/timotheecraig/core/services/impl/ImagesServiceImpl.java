@@ -25,7 +25,6 @@ public class ImagesServiceImpl implements ImagesService {
 
     private final Logger logger = LoggerFactory.getLogger(ImagesServiceImpl.class);
 
-
     /** Getters and Setters **/
     public ImagesRepository getImagesRepository() {
         return imagesRepository;
@@ -52,7 +51,7 @@ public class ImagesServiceImpl implements ImagesService {
 
     public void deleteImages(Images images) {
         try {
-            File file = new File(images.getPath());
+            File file = new File(ImagesController.UPLOADED_FOLDER + images.getPath());
             if(file.delete()) {
                 logger.debug(file.getName() + " was succesfully deleted!");
             } else {
