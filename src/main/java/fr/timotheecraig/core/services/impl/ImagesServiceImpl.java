@@ -49,9 +49,9 @@ public class ImagesServiceImpl implements ImagesService {
         return imagesRepository.findById(id);
     }
 
-    public void deleteImages(Images images) {
+    public void deleteImages(Images images, String folder) {
         try {
-            File file = new File(ImagesController.UPLOADED_FOLDER + images.getPath());
+            File file = new File(folder + images.getPath());
             if(file.delete()) {
                 logger.debug(file.getName() + " was succesfully deleted!");
             } else {

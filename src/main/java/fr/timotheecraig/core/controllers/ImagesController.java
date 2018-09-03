@@ -7,6 +7,8 @@ import fr.timotheecraig.core.services.ImagesService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,9 +26,10 @@ public class ImagesController {
     @Autowired
     ImagesService imagesService;
 
-    private final Logger logger = LoggerFactory.getLogger(ImagesController.class);
+    @Autowired
+    private Environment env;
 
-    public static String UPLOADED_FOLDER = "/Users/timotheecraig/Documents/development/timotheecraig.fr/timothee-craig.fr/public/img/"; // TODO : Must change when I put this on my Linux VPS :)
+    private final Logger logger = LoggerFactory.getLogger(ImagesController.class);
 
     @GetMapping("/images")
     public Images getRandomImage() {
@@ -48,7 +51,7 @@ public class ImagesController {
         }
 
         try {
-            imagesService.saveUploadedFiles(Arrays.asList(file), UPLOADED_FOLDER);
+            imagesService.saveUploadedFiles(Arrays.asList(file), env.getProperty("timotheecraig.img.path"));
         } catch (IOException e) {
             return null;
         }
@@ -59,7 +62,7 @@ public class ImagesController {
     @DeleteMapping("/images/{id}")
     public ResponseEntity<?> deleteImages(@PathVariable(value = "id") Integer id) {
         Images images = imagesService.getImages(id).orElseThrow(() -> new RessourceNotFoundException("Images", "id", id));
-        imagesService.deleteImages(images);
+        imagesService.deleteImages(images, env.getProperty("timotheecraig.img.path"));
         return ResponseEntity.ok().build();
     }
 

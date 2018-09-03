@@ -22,3 +22,7 @@ Format is:
         public static final String IP_STACK_API_KEY = "IPSTACK.COM API KEY";
     }
 
+To deploy the project, use maven and create a jar. You can then run the jar using the following command:
+    
+    java -jar <projectname> --spring.config.location=/path/to/property.properties
+    

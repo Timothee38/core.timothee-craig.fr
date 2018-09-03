@@ -20,7 +20,7 @@ public interface ImagesService {
     public Optional<Images> getImages(Integer id);
 
     @Transactional(readOnly = false)
-    public void deleteImages(Images images);
+    public void deleteImages(Images images, String folder);
 
     public void saveUploadedFiles(List<MultipartFile> asList, String uploadedFolder) throws IOException;
 
